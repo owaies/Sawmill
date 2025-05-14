@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sawmill | Home</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+  body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #FAF3E0; /* Light Woodgrain */
+  color: #2E1C12; /* Deep Bark */
+  scroll-behavior: smooth;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #5D3A00; /* Dark Walnut */
+  padding: 12px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+  color: #ffffff;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #D2B48C; /* Golden Oak */
+}
+
+section {
+  padding: 60px 20px;
+  border-bottom: 3px solid #000000;
+  background-color: #a78143;
+}
+
+.hero {
+  background-image: url("{% static 'images/home.jpeg' %}");
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  padding: 100px 20px;
+  text-align: center;
+  color: #000000;
+  font-size: 25px;
+}
+
+
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gallery-grid img {
+  width: 220px;
+  height: 200px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /* Animation */
+  opacity: 0;
+  transform: scale(1.0);
+  animation: fadeInScale 0.6s ease-in-out forwards;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.gallery-grid img:hover {
+  transform: scale(1.1); /* Zoom in */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+/* Optional: stagger the animation per image */
+.gallery-grid img:nth-child(1) { animation-delay: 0.1s; }
+.gallery-grid img:nth-child(2) { animation-delay: 0.2s; }
+.gallery-grid img:nth-child(3) { animation-delay: 0.3s; }
+/* Add more as needed or use JS to automate */
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background-color: #5D3A00;
+  color: #ffffff;
+  font-size: 0.95em;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products & Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="hero" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+  <h1>{{ home.hero_text }}</h1>
+  <p>{{ home.intro_text }}</p>
+  </section>
+
+
+  <!-- About Section -->
+  <section id="about" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+    <h2>About Us</h2>
+    <p>{{ about.text }}</p>
+  </section>
+
+  <!-- Products & Services Section -->
+  <section id="products" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+    <h2>Products & Services</h2>
+    <ul>
+      {% for product in products %}
+        <li>{{ product }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      {% for image in gallery_images %}
+        <img src="{{ image }}" alt="{{ image.alt_text }}" />
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+    <h2>Contact & Location</h2>
+    <p>Email: {{ contact.email }}</p>
+    <p>Phone: {{ contact.phone }}</p>
+    <p>Address: {{ contact.address }}</p>
+    <div style="margin-top: 20px;">
+      <iframe 
+  src="https://maps.google.com/maps?q=NearlTI,+Kavalagundi+Post,+B.H.Road,+BHADRAVATHI-577301,+Shivamogga+Dist.&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" 
+  loading="quick">
+</iframe>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Our Sawmill — All Rights Reserved
+  </footer>
+
+</body>
+</html>

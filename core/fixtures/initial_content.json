@@ -1,0 +1,24 @@
+[
+  {
+    "model": "core.sitecontent",
+    "pk": 1,
+    "fields": {
+      "section": "home",
+      "content_type": "text",
+      "key": "heroText",
+      "value": "Welcome to Our Sawmill",
+      "image": null
+    }
+  },
+  {
+    "model": "core.sitecontent",
+    "pk": 2,
+    "fields": {
+      "section": "about",
+      "content_type": "text",
+      "key": "aboutText",
+      "value": "We are a family-run sawmill crafting timber since 1980.",
+      "image": null
+    }
+  }
+]
