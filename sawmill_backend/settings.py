@@ -5,7 +5,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key secret in production!
-SECRET_KEY = 'django-insecure-m*!y6*64mcweia8(z0ewlqiu4)hs7!*#e_h@sbs55i10(13en@'
+import os
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 
 # Set DEBUG=True during development. For production, set to False.
 DEBUG = False
