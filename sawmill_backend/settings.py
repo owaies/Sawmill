@@ -5,15 +5,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key secret in production!
-import os
-
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-
 
 # Set DEBUG=True during development. For production, set to False.
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://sawmill-smxk.onrender.com']
+# Allowed hosts - fix by removing protocol and add Render hostname dynamically if present
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 INSTALLED_APPS = [
@@ -86,7 +88,7 @@ USE_TZ = True
 
 # Static files (CSS, JS, images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
 
 # Optional: If you want to serve extra static files in development
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # ✅ List
