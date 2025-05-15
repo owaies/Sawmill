@@ -77,17 +77,19 @@
     </div>
   </section>
 
-  <!-- Gallery Section -->
- <section id="gallery" class="py-16" style="background: linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B );text-decoration: underline;">
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-16" style="background: linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B );text-decoration: underline;">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-6xl font-semibold text-center mb-10 text-[#3B1F00] drop-shadow-md">Gallery</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
       {% for image in gallery_images %}
-        <img src="{{ image }}" alt="{{ image.alt_text }}" class="w-72 h-64 rounded-lg object-cover transform transition duration-300 hover:scale-110 shadow-md animate-fadeIn">
+        <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="w-72 h-64 rounded-lg object-cover transform transition duration-300 hover:scale-110 shadow-md animate-fadeIn">
       {% endfor %}
     </div>
   </div>
 </section>
+
 
 
   <!-- Products Section -->

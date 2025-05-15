@@ -1,35 +1,26 @@
 """
 URL configuration for sawmill_backend project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+The `urlpatterns` list routes URLs to views.
 """
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import index_view,save_content
-from core import views
+
+from core.views import index_view, admin_html, save_content
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),
-    path('', include('core.urls')),
-    path('', index_view),
-    path('admin.html', views.admin_html, name='admin_html'),
-    path('api/content/', save_content, name='save_content'),
+    path('admin/', admin.site.urls),                     # Django admin
+    path('api/', include('core.urls')),                  # API routes from core/urls.py
+    path('', index_view, name='index'),                  # Homepage view
+    path('admin.html', admin_html, name='admin_html'),   # Custom admin HTML page
+    path('api/content/', save_content, name='save_content'),  # API to save content
 ]
 
+# Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+   # Serve static files (e.g., admin CSS/JS)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
