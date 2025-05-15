@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # Set DEBUG=True during development. For production, set to False.
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://sawmill-smxk.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,7 +86,7 @@ USE_TZ = True
 
 # Static files (CSS, JS, images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'staticfiles'  # For collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For collectstatic
 
 # Optional: If you want to serve extra static files in development
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # ✅ List
