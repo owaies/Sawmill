@@ -4,166 +4,130 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sawmill | Home</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-  body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  background-color: #FAF3E0; /* Light Woodgrain */
-  color: #2E1C12; /* Deep Bark */
-  scroll-behavior: smooth;
-}
+    html {
+      scroll-behavior: smooth;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .animate-fadeIn {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+    
+    header {
+      background:linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B );
+;
+      color:black;
+    }
+  
+    nav a:hover {
+      text-decoration: underline;
+      color:#3B1F00;
 
-nav {
-  position: sticky;
-  top: 0;
-  background-color: #5D3A00; /* Dark Walnut */
-  padding: 12px 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-nav a {
-  color: #ffffff;
-  margin-right: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #D2B48C; /* Golden Oak */
-}
-
-section {
-  padding: 60px 20px;
-  border-bottom: 3px solid #000000;
-  background-color: #a78143;
-}
-
-.hero {
-  background-image: url("{% static 'images/home.jpeg' %}");
-  background-size: cover;
-  background-position: center;
-  background-color: #ffffff;
-  background-repeat: no-repeat;
-  padding: 100px 20px;
-  text-align: center;
-  color: #000000;
-  font-size: 25px;
-}
-
-
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.gallery-grid img {
-  width: 220px;
-  height: 200px;
-  border-radius: 6px;
-  object-fit: cover;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  /* Animation */
-  opacity: 0;
-  transform: scale(1.0);
-  animation: fadeInScale 0.6s ease-in-out forwards;
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.1); /* Zoom in */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-}
-/* Optional: stagger the animation per image */
-.gallery-grid img:nth-child(1) { animation-delay: 0.1s; }
-.gallery-grid img:nth-child(2) { animation-delay: 0.2s; }
-.gallery-grid img:nth-child(3) { animation-delay: 0.3s; }
-/* Add more as needed or use JS to automate */
-
-@keyframes fadeInScale {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
-footer {
-  text-align: center;
-  padding: 30px;
-  background-color: #5D3A00;
-  color: #ffffff;
-  font-size: 0.95em;
-}
-
+    }
+    
   </style>
 </head>
-<body>
+<body class="text-[#2E1C12] font-sans bg-cover bg-center" >
 
-  <nav style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#products">Products & Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- Navbar -->
+  <header class="sticky top-0 z-50 bg-[]/90 backdrop-blur shadow-md"  style="background-image: url('{{ home_bg_url }}'); background-size: cover;">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="text-[#ffd6a4] text-3xl font-bold " style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> BabaJan Sawmill🪚</a>
+      <button id="menuBtn" class="sm:hidden text-[#ffd6a4] text-2l font-bold">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <nav class="hidden sm:flex space-x-6">
+        <a href="#home" class="text-[#ffd6a4] text-2l font-bold">Home</a>
+        <a href="#about" class="text-[#ffd6a4] text-2l font-bold">About</a>
+        <a href="#gallery" class="text-[#ffd6a4] text-2l font-bold">Gallery</a>
+        <a href="#products" class="text-[#ffd6a4] text-2l font-bold">Products</a>
+        <a href="#contact" class="text-[#ffd6a4] text-2l font-bold">Contact</a>
+      </nav>
+    </div>
+    <div id="mobileMenu"class="sm:hidden hidden px-4 py-4 bg-white/95 flex flex-row items-center justify-center space-x-6 text-[#ffd6a4] text-center" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
+      <a href="#home" class="text-[#ffd6a4] text-2l font-bold">Home</a>
+      <a href="#about" class="text-[#ffd6a4] text-2l font-bold">About</a>
+      <a href="#gallery" class="text-[#ffd6a4] text-2l font-bold">Gallery</a>
+      <a href="#products" class="text-[#ffd6a4] text-2l font-bold">Products</a>
+      <a href="#contact" class="text-[#ffd6a4] text-2l font-bold">Contact</a>
+    </div>
+  </header>
 
-  <!-- Home Section -->
-  <section id="home" class="hero" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-  <h1>{{ home.hero_text }}</h1>
-  <p>{{ home.intro_text }}</p>
+  <!-- Hero Section -->
+  <section id="home" class="text-center py-20 bg-cover bg-center" style="background: linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B);">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-6xl font-bold text-black">{{ home.hero_text }}</h1>
+      <p class="text-xl text-[#3B1F00] mt-4">{{ home.intro_text }}</p>
+    </div>
   </section>
-
 
   <!-- About Section -->
-  <section id="about" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-    <h2>About Us</h2>
-    <p>{{ about.text }}</p>
-  </section>
-
-  <!-- Products & Services Section -->
-  <section id="products" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-    <h2>Products & Services</h2>
-    <ul>
-      {% for product in products %}
-        <li>{{ product }}</li>
-      {% endfor %}
-    </ul>
+  <section id="about" class="py-16 text-center text-[#ffd6a4]" style="background-image: url('{{ home_bg_url }}'); background-size: cover;">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-4" style="text-decoration: underline;">About Us : </h2>
+      <p class="text-lg">{{ about.text }}</p>
+    </div>
   </section>
 
   <!-- Gallery Section -->
-  <section id="gallery" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
+ <section id="gallery" class="py-16" style="background: linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B );text-decoration: underline;">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-6xl font-semibold text-center mb-10 text-[#3B1F00] drop-shadow-md">Gallery</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
       {% for image in gallery_images %}
-        <img src="{{ image }}" alt="{{ image.alt_text }}" />
+        <img src="{{ image }}" alt="{{ image.alt_text }}" class="w-72 h-64 rounded-lg object-cover transform transition duration-300 hover:scale-110 shadow-md animate-fadeIn">
       {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 text-center text-[#ffd6a4]" style="background-image: url('{{ home_bg_url }}'); background-size: cover;text-decoration: underline;">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-6">Products & Services</h2>
+      <ul class="list-disc list-inside text-lg text-left mx-auto max-w-md">
+        {% for product in products %}
+          <li>{{ product }}</li>
+        {% endfor %}
+      </ul>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" style="background-image: url('{{ home_bg_url }}'); background-size: cover; background-position: center;">
-    <h2>Contact & Location</h2>
-    <p>Email: {{ contact.email }}</p>
-    <p>Phone: {{ contact.phone }}</p>
-    <p>Address: {{ contact.address }}</p>
-    <div style="margin-top: 20px;">
-      <iframe 
-  src="https://maps.google.com/maps?q=NearlTI,+Kavalagundi+Post,+B.H.Road,+BHADRAVATHI-577301,+Shivamogga+Dist.&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" 
-  loading="quick">
-</iframe>
+  <section id="contact" class="py-16 text-center" style="background: linear-gradient(to bottom, #C19A6B, #8B5A2B, #C19A6B );">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-4 text-black" style="text-decoration : underline ">Contact & Location</h2>
+    <p class="text-[#3B1F00] text-xl font-semibold">Email: {{ contact.email }}</p>
+    <p class="text-[#3B1F00] text-xl font-semibold">Phone: <a href="tel:{{ contact.phone }}" class="underline hover:text-orange-700">{{ contact.phone }}</a></p>
+    <p class="text-[#3B1F00] text-xl font-semibold">Address: {{ contact.address }}</p>
+    <div class="mt-6">
+      <iframe src="{{ contact_map_url }}" width="100%" height="300" class="rounded-lg shadow-md border-0" allowfullscreen="" loading="eager"></iframe>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    &copy; 2025 Our Sawmill — All Rights Reserved
+
+  <!-- Footer -->
+  <footer class="text-[#ffd6a4] py-6 text-center bg-[#5D3A00]/90 backdrop-blur" style="background-image: url('{{ home_bg_url }}'); background-size: cover;">
+    &copy; 1987–2025 Our Sawmill — All Rights Reserved
   </footer>
 
+  <!-- Mobile Menu Script -->
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>

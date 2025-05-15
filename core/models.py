@@ -24,3 +24,17 @@ class SiteContent(models.Model):
 
     def __str__(self):
         return f"{self.section} - {self.key}"
+class BackgroundImage(models.Model):
+    section = models.CharField(max_length=20, choices=[
+        ('navbar', 'Navbar'),
+        ('home', 'Home'),
+        ('about', 'About'),
+        ('gallery', 'Gallery'),
+        ('products', 'Products'),
+        ('contact', 'Contact'),
+        ('footer', 'Footer'),
+    ])
+    image = models.ImageField(upload_to='backgrounds/')
+
+    def __str__(self):
+        return self.section

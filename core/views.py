@@ -55,7 +55,7 @@ def index_view(request):
     contact_email = contact.filter(key='email').first().value if contact.filter(key='email').exists() else 'info@sawmill.com'
     contact_phone = contact.filter(key='phone').first().value if contact.filter(key='phone').exists() else '+123-456-7890'
     contact_address = contact.filter(key='address').first().value if contact.filter(key='address').exists() else '123 Timber Lane, Woodville'
-    contact_map_url = contact.filter(key='mapUrl').first().value if contact.filter(key='mapUrl').exists() else 'https://maps.google.com/?q=123+Timber+Lane,+Woodville&output=embed'
+    contact_map_url = contact.filter(key__iexact='mapUrl').first().value if contact.filter(key__iexact='mapUrl').exists() else ...
     primary_color = theme.filter(key='primaryColor').first().value if theme.filter(key='primaryColor').exists() else '#5D3A00'
     secondary_color = theme.filter(key='secondaryColor').first().value if theme.filter(key='secondaryColor').exists() else '#D2B48C'
     background_color = theme.filter(key='backgroundColor').first().value if theme.filter(key='backgroundColor').exists() else '#FAF3E0'
